@@ -1,0 +1,101 @@
+{
+  "rules": [
+    {
+      "behavior_class": "Safe Walkway Violation",
+      "observable_indicator": "Personnel foot position outside green-marked walkway boundaries",
+      "detection_type": "zone_boundary",
+      "detection_params": {
+        "zone_polygon": [
+          [
+            100,
+            400
+          ],
+          [
+            540,
+            400
+          ],
+          [
+            540,
+            470
+          ],
+          [
+            100,
+            470
+          ]
+        ],
+        "violation_direction": "outside"
+      },
+      "policy_section_ref": "§3",
+      "severity_keywords": [
+        "WARNING",
+        "highest-frequency unsafe behavior"
+      ],
+      "assigned_severity": "HIGH"
+    },
+    {
+      "behavior_class": "Unauthorized Intervention",
+      "observable_indicator": "Person interacting with equipment without wearing green safety vest",
+      "detection_type": "hsv_color",
+      "detection_params": {
+        "lower_hsv": [
+          35,
+          80,
+          80
+        ],
+        "upper_hsv": [
+          85,
+          255,
+          255
+        ],
+        "min_pixel_ratio": 0.15
+      },
+      "policy_section_ref": "§4",
+      "severity_keywords": [
+        "CRITICAL SAFETY NOTICE"
+      ],
+      "assigned_severity": "CRITICAL"
+    },
+    {
+      "behavior_class": "Opened Panel Cover",
+      "observable_indicator": "Electrical panel cover in open position during production",
+      "detection_type": "region_state",
+      "detection_params": {
+        "region_coords": [
+          500,
+          50,
+          100,
+          100
+        ],
+        "expected_state": "closed",
+        "tolerance": 30
+      },
+      "policy_section_ref": "§5",
+      "severity_keywords": [
+        "WARNING"
+      ],
+      "assigned_severity": "HIGH"
+    },
+    {
+      "behavior_class": "Carrying Overload with Forklift",
+      "observable_indicator": "Forklift carrying 3 or more standardized blocks",
+      "detection_type": "contour_count",
+      "detection_params": {
+        "expected_count": 2,
+        "tolerance": 0,
+        "roi_coords": [
+          50,
+          200,
+          300,
+          250
+        ]
+      },
+      "policy_section_ref": "§6",
+      "severity_keywords": [
+        "CRITICAL SAFETY NOTICE"
+      ],
+      "assigned_severity": "CRITICAL"
+    }
+  ],
+  "source_document": "compliance_policy.pdf (fallback)",
+  "parsed_at": "2026-06-18T04:14:33Z"
+}
